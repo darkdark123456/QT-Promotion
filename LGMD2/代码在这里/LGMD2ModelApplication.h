@@ -16,7 +16,7 @@
 #include "ui_LGMD2ModelApplication.h"
 
 
-/**ÀàµÄÉùÃ÷*/
+/**ç±»çš„å£°æ˜*/
 QT_BEGIN_NAMESPACE
 namespace Ui { class LGMD2ModelApplicationClass; };
 QT_END_NAMESPACE
@@ -34,24 +34,24 @@ private:
 private slots:
     void btnCalculateLGMD2Clicked();
 private:
-    double threshold = 0.02;                          /**¶¨ÒåãĞÖµ*/
-    size_t number = 0;                                   /**³ÌĞòËÆºõĞèÒªÒ»¸ö¼ÆÊıÆ÷À´¹¤×÷*/
-    std::deque<cv::Mat> normalizedVideoFrameDeque;      /**½Ï±ÈÓÚÖ®Ç°µÄ³ÌĞò£¬dequeÃ¿ÊÕµ½Á¬ĞøµÄÈı¸öframe±ã°ÑÆäËÍÈëÄ£ĞÍ£¬Ö±µ½²É¼¯½áÊø*/
-    std::vector<cv::Mat> allFrameVector;                /**´æ·ÅÖ¡²îÊı×é*/
-    std::vector<double> sCellOutputVector;              /**´æ·Å×îÖÕµÄS²ãµÄÊä³ö½á¹û*/
-    std::vector<cv::Mat> storageVideoOutputVector;      /**¶¨ÒåÒ»¸övectorÓÃÀ´´æ·ÅIonµÄÊä³ö£¬½«ÒÔMP4¸ñÊ½´æ·ÅÔÚ´ÅÅÌÖĞ*/
-    cv::Mat beforeTimePonOutput;                        /**ĞèÒªÒ»¸ö³õÊ¼µÄPon³ÉÔ±À´½øĞĞÑ­»·µÄ¿ª¶Ë*/
-    cv::Mat beforeTimmePoffOutput;                      /**ĞèÒªÒ»¸ö³õÊ¼µÄPoff³ÉÔ±À´½øĞĞÑ­»·µÄ¿ª¶Ë*/    
-    std::vector<cv::Mat> storagePoffOutputVector;       /**´æ´¢PoffµÄÊä³ö*/
-    std::vector<cv::Mat> storagePonOutputVector;        /**´æ´¢PonµÄÊä³ö*/
-    std::vector<cv::Mat> storageSonOutputVector;        /**´æ´¢SonµÄÊä³ö*/
-    std::vector<cv::Mat> storageSoffOutputVector;        /**´æ´¢SoffµÄÊä³ö*/
+    double threshold = 0.02;                          /**å®šä¹‰é˜ˆå€¼*/
+    size_t number = 0;                                   /**ç¨‹åºä¼¼ä¹éœ€è¦ä¸€ä¸ªè®¡æ•°å™¨æ¥å·¥ä½œ*/
+    std::deque<cv::Mat> normalizedVideoFrameDeque;      /**è¾ƒæ¯”äºä¹‹å‰çš„ç¨‹åºï¼Œdequeæ¯æ”¶åˆ°è¿ç»­çš„ä¸‰ä¸ªframeä¾¿æŠŠå…¶é€å…¥æ¨¡å‹ï¼Œç›´åˆ°é‡‡é›†ç»“æŸ*/
+    std::vector<cv::Mat> allFrameVector;                /**å­˜æ”¾å¸§å·®æ•°ç»„*/
+    std::vector<double> sCellOutputVector;              /**å­˜æ”¾æœ€ç»ˆçš„Så±‚çš„è¾“å‡ºç»“æœ*/
+    std::vector<cv::Mat> storageVideoOutputVector;      /**å®šä¹‰ä¸€ä¸ªvectorç”¨æ¥å­˜æ”¾Ionçš„è¾“å‡ºï¼Œå°†ä»¥MP4æ ¼å¼å­˜æ”¾åœ¨ç£ç›˜ä¸­*/
+    cv::Mat beforeTimePonOutput;                        /**éœ€è¦ä¸€ä¸ªåˆå§‹çš„Ponæˆå‘˜æ¥è¿›è¡Œå¾ªç¯çš„å¼€ç«¯*/
+    cv::Mat beforeTimmePoffOutput;                      /**éœ€è¦ä¸€ä¸ªåˆå§‹çš„Poffæˆå‘˜æ¥è¿›è¡Œå¾ªç¯çš„å¼€ç«¯*/    
+    std::vector<cv::Mat> storagePoffOutputVector;       /**å­˜å‚¨Poffçš„è¾“å‡º*/
+    std::vector<cv::Mat> storagePonOutputVector;        /**å­˜å‚¨Ponçš„è¾“å‡º*/
+    std::vector<cv::Mat> storageSonOutputVector;        /**å­˜å‚¨Sonçš„è¾“å‡º*/
+    std::vector<cv::Mat> storageSoffOutputVector;        /**å­˜å‚¨Soffçš„è¾“å‡º*/
 
 public:
     void                           getPcellsOutput();
     cv::Mat                        getOnPCellsOuptput(cv::Mat& beforeVideoFrame,cv::Mat& nextVideoFrame);
     cv::Mat                        getOffPCellsOutput(cv::Mat& beforeVideoFrame, cv::Mat& nextVideoFrame);
-    std::pair<cv::Mat,cv::Mat>    getExcitabilityOnCellOutput(cv::Mat& beforeTimePonOutput,cv::Mat& postTimePonOutput);
+    std::pair<cv::Mat,cv::Mat>     getExcitabilityOnCellOutput(cv::Mat& beforeTimePonOutput,cv::Mat& postTimePonOutput);
     bool                           getIntoOnEntrance();
     bool                           getIntoOffEntrance();
     cv::Mat                        getOnInhibitionOutput(cv::Mat& beforeTimeExacitability, cv::Mat& postTimeExactitability);
@@ -60,15 +60,15 @@ public:
     cv::Mat                        getInitOffPCellOutput();
 protected:
     cv::Mat                        firstHalfWaveRectification(cv::Mat pOnPCellOutput);
-    cv::Mat                        secondHalfWaveRectification(cv::Mat pOffPCellOutput);                                      /**»ñµÃ³õÊ¼µÄw1,w2*/
-    std::pair<float,float>         getCoefficient(const cv::Mat& t_TimeExcitability, float& beforePM,bool flag=1);      /**»ñµÃSonÊ¹ÓÃµÄw1(t),w2(tÏµÊı)*/
-    bool                           writeVideoToDisk(std::vector<cv::Mat>& storageVideoOutputVector);                           /**Ïò´ÅÅÌĞ´ÈëÊÓÆµÎÄ¼ş*/
+    cv::Mat                        secondHalfWaveRectification(cv::Mat pOffPCellOutput);                                      /**è·å¾—åˆå§‹çš„w1,w2*/
+    std::pair<float,float>         getCoefficient(const cv::Mat& t_TimeExcitability, float& beforePM,bool flag=1);      /**è·å¾—Sonä½¿ç”¨çš„w1(t),w2(tç³»æ•°)*/
+    bool                           writeVideoToDisk(std::vector<cv::Mat>& storageVideoOutputVector);                           /**å‘ç£ç›˜å†™å…¥è§†é¢‘æ–‡ä»¶*/
 
 public:
     static  double                      getCoefficientAboutPcell(size_t i);
 public:
-    cv::Mat convolutionFrame(cv::Mat inputFrame, cv::Mat coefficientMatrix, size_t flag);  /**¶¨Òå¾í»ı²Ù×÷*/
-    cv::Mat maxPoolingFrame(cv::Mat& convolutionPostFrame);                                 /**¶¨Òå×î´ó³Ø»¯²Ù×÷*/
+    cv::Mat convolutionFrame(cv::Mat inputFrame, cv::Mat coefficientMatrix, size_t flag);  /**å®šä¹‰å·ç§¯æ“ä½œ*/
+    cv::Mat maxPoolingFrame(cv::Mat& convolutionPostFrame);                                 /**å®šä¹‰æœ€å¤§æ± åŒ–æ“ä½œ*/
 public:
     void testFuncation();
 
