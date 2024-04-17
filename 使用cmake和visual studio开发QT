@@ -1,0 +1,44 @@
+1使用visual studio创建一个cmake项目CMakeProject1"
+
+
+2创建cmakeList.txt
+cmake_minimum_required (VERSION 3.8)
+
+# 如果支持，请为 MSVC 编译器启用热重载。
+if (POLICY CMP0141)
+  cmake_policy(SET CMP0141 NEW)
+  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+endif() 
+
+project ("CMakeProject1")
+
+# 查找Qt库
+set(Qt5_DIR "E:/graph/3rdparty/qt-5.15.2/lib/cmake/Qt5")
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+
+# 包含Qt的头文件目录
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
+
+# 将源代码添加到此项目的可执行文件。
+add_executable (CMakeProject1
+"main.cpp"
+
+)
+
+# 链接Qt库
+target_link_libraries(CMakeProject1 
+    Qt5::Core
+    Qt5::Widgets
+)
+
+# 设置输出目录为当前项目下的build文件夹
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/bin)
+
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET CMakeProject1 PROPERTY CXX_STANDARD 20)
+endif()
+
+# TODO: 如有需要，请添加测试并安装目标。
+
+
+3在该项目CMakeProject1"文件夹创建一个build目录，然后cd build，使用cmake .. 来构建带有.slh的visual studio项目 ，然后可以用vs打开cmake项目，然后右键设置为启动项目，然后重新生成，进行编译即可
